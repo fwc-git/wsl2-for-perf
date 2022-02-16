@@ -35,7 +35,7 @@ jobs:
           make
       - name: compress Release
         run : |
-          cd WSL2-Linux-Kernel/tools/perf && zip -r wsl2-for-perf-release.zip ./*
+          cd WSL2-Linux-Kernel/tools && zip -r wsl2-for-perf-release.zip perf
           
       - name: Create Release
         id: create_release
@@ -55,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./WSL2-Linux-Kernel/tools/perf/wsl2-for-perf-release.zip
+          asset_path: ./WSL2-Linux-Kernel/tools/wsl2-for-perf-release.zip
           asset_name: wsl2-for-perf-release.zip
           asset_content_type: application/zip
