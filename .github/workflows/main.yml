@@ -48,6 +48,11 @@ jobs:
           release_name: ${{ github.ref }}-ubuntu
           draft: false
           prerelease: false
+          
+      - name: list zip file
+        run : |
+          pwd && cd WSL2-Linux-Kernel/tools/perf && ls -al
+          echo ${{ github.ref }}
 
       - name: Upload Release Asset
         id: upload-release-asset 
