@@ -33,20 +33,21 @@ jobs:
           git clone --depth=1 https://github.com/microsoft/WSL2-Linux-Kernel.git
           cd WSL2-Linux-Kernel/tools/perf
           make
+          ls -al
       - name: compress Release
         run : |
           cd WSL2-Linux-Kernel/tools && zip -r wsl2-for-perf-release.zip perf
           
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}-ubuntu
-          release_name: ${{ github.ref }}-ubuntu
-          draft: false
-          prerelease: false
+#       - name: Create Release
+#         id: create_release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: ${{ github.ref }}-ubuntu
+#           release_name: ${{ github.ref }}-ubuntu
+#           draft: false
+#           prerelease: false
 
       - name: Upload Release Asset
         id: upload-release-asset 
