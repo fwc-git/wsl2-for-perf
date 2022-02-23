@@ -34,10 +34,12 @@ jobs:
           cd WSL2-Linux-Kernel/tools/perf
           make
           ls -al
+          sudo chmod +x perf
+          ./perf test
       - name: compress Release
         run : |
           cd WSL2-Linux-Kernel/tools/perf && zip -r wsl2-for-perf-release.zip perf*
-      - name : upload apk
+      - name : upload binary
         uses: actions/upload-artifact@master
         if: always()
         with:
