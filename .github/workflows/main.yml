@@ -37,11 +37,12 @@ jobs:
       - name: compress Release
         run : |
           cd WSL2-Linux-Kernel/tools/perf && zip -r wsl2-for-perf-release.zip perf*
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3 # 使用第三方 Action 把构建完成的 Artifact 部署到指定分支
+      - name : upload apk
+        uses: actions/upload-artifact@master
+        if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: release
+          name: wsl2-for-perf
+          path: ./WSL2-Linux-Kernel/tools/perf/wsl2-for-perf-release.zip
           
 #       - name: Create Release
 #         id: create_release
